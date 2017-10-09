@@ -18,6 +18,7 @@ etcd2	172.16.3.113
 
 static 方式
 
+
 172.16.3.111：
 
 $ etcd --name etcd0 --data-dir /vpants/etcd/data --initial-advertise-peer-urls http://172.16.3.111:2380 \
