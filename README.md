@@ -1,15 +1,15 @@
 # ansible-deploy-etcd-cluster
-集群大小	最大容错
-1	          0
-3	          1
-5	          2
-7	          3
-9	          4
+| 集群大小 |	最大容错 |
+| 1	      |    0      |
+| 3	      |    1      |
+| 5	      |    2      |
+| 7	      |    3      |
+| 9	      |    4      |
 
 etcd 集群的搭建有三种方式：
-1、static 方式
-2、etcd discovery
-3、DNS discovery
+. static 方式
+. etcd discovery
+. DNS discovery
 
 name	  ip
 etcd0 172.16.3.111
