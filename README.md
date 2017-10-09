@@ -25,7 +25,7 @@ $ etcd --name etcd0 --data-dir /vpants/etcd/data --initial-advertise-peer-urls h
   --listen-client-urls http://172.16.3.111:2379,http://127.0.0.1:2379 \
   --advertise-client-urls http://172.16.3.111:2379 \
   --initial-cluster-token etcd-cluster-1 \
-  --initial-cluster etcd0=http://172.16.3.111:2380,infra1=http://172.16.3.112:2380,infra2=http://172.16.3.113:2380 \
+  --initial-cluster etcd0=http://172.16.3.111:2380,etcd1=http://172.16.3.112:2380,etcd2=http://172.16.3.113:2380 \
   --initial-cluster-state new
   
 172.16.3.112:
@@ -35,7 +35,7 @@ $ etcd --name etcd1 --data-dir /vpants/etcd/data --initial-advertise-peer-urls h
   --listen-client-urls http://172.16.3.112:2379,http://127.0.0.1:2379 \
   --advertise-client-urls http://172.16.3.112:2379 \
   --initial-cluster-token etcd-cluster-1 \
-  --initial-cluster etcd0=http://172.16.3.111:2380,infra1=http://172.16.3.112:2380,infra2=http://172.16.3.113:2380 \
+  --initial-cluster etcd0=http://172.16.3.111:2380,etcd1=http://172.16.3.112:2380,etcd2=http://172.16.3.113:2380 \
   --initial-cluster-state new
   
  172.16.3.113:
@@ -45,5 +45,5 @@ $ etcd --name etcd1 --data-dir /vpants/etcd/data --initial-advertise-peer-urls h
   --listen-client-urls http://172.16.3.113:2379,http://127.0.0.1:2379 \
   --advertise-client-urls http://172.16.3.113:2379 \
   --initial-cluster-token etcd-cluster-1 \
-  --initial-cluster etcd0=http://172.16.3.111:2380,infra1=http://172.16.3.112:2380,infra2=http://172.16.3.113:2380 \
+  --initial-cluster etcd0=http://172.16.3.111:2380,etcd1=http://172.16.3.112:2380,etcd2=http://172.16.3.113:2380 \
   --initial-cluster-state new
