@@ -57,3 +57,18 @@ $ etcd --name etcd2 --data-dir /vpants/etcd/data --initial-advertise-peer-urls h
   --initial-cluster-token etcd-cluster-1 \
   --initial-cluster etcd1=http://172.16.3.111:2380,etcd2=http://172.16.3.112:2380,etcd3=http://172.16.3.113:2380 \
   --initial-cluster-state new
+
+# etcdctl 
+
+# show cluster node
+etcdctl member list
+
+# update cluster node
+etcdctl member update id  http://ip:2380
+
+# delete cluster node
+etcdctl member reomve id
+
+# add cluster node
+etcdctl member add name http://ip:2380
+>  initial-cluster-state: existing
