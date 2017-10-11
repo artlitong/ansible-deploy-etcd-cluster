@@ -18,10 +18,11 @@ etcd 集群的搭建有三种方式：
 . etcd discovery
 . DNS discovery
 
-name	  ip
-etcd1 172.16.3.111
-etcd2	172.16.3.112
-etcd3	172.16.3.113
+|name	 | ip |
+| :-------- | :--:    |
+|etcd1 | 172.16.3.111 |
+|etcd2 | 172.16.3.112 |
+|etcd3 | 172.16.3.113 |
 
 static 方式
 
