@@ -19,8 +19,8 @@
     enabled: yes
     state: started
 
-#- name: etcd restart
-#  become: yes
-#  become_user: root
-#  when: etcd_service_modified|changed
-#  command: service etcd restart
+- name: etcd restart
+  become: yes
+  become_user: root
+  when: etcd_service_modified|changed
+  command: service etcd restart
