@@ -1,3 +1,8 @@
+### Example playbook:
+
+ansible-playbook -i inventory.ini deploy.yml -vv
+
+
 # ansible-deploy-etcd-cluster
 
 | 集群大小   |    最大容错  |
