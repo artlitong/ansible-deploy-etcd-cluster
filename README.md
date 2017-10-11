@@ -14,9 +14,10 @@ ansible-playbook -i inventory.ini deploy.yml -vv
 | 9	      |    4      |
 
 etcd 集群的搭建有三种方式：
-. static 方式
-. etcd discovery
-. DNS discovery
+
+* static 方式
+* etcd discovery
+* DNS discovery
 
 |name	 | ip |
 | :-------- | :--:    |
