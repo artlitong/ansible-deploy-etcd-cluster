@@ -1,0 +1,15 @@
+{% if inventory_hostname in groups[etcd_master_group_name] %}
+name: "{{hostvars[inventory_hostname]['name']}}"
+{% else %}
+name: "{{ansible_hostname}}"
+{% endif %}
+data-dir: "{{etcd_data_dir}}"
+listen-client-urls: "{{etcd_scheme}}://{{etcd_public_address}}:2379,{{etcd_scheme}}://127.0.0.1:2379"
+{% if inventory_hostname in groups[etcd_master_group_name] %}
+listen-peer-urls: "{{etcd_scheme}}://{{etcd_public_address}}:2380"
+advertise-client-urls: "{{etcd_scheme}}://{{etcd_public_address}}:2379"
+initial-advertise-peer-urls: "{{etcd_scheme}}://{{etcd_public_address}}:2380"
+{% endif %}
+initial-cluster: "{{etcd_cluster}}"
+initial-cluster-state: "new"
+initial-cluster-token: "{{etcd_initial_cluster_token}}"

@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+# /etc/init.d/etcd
+#
+# Startup script for etcd
+#
+# chkconfig: 2345 20 80
+# description: Starts and stops etcd
+
+. /etc/init.d/functions
+
+etcd_user="{{etcd_user}}"
+prog="etcd"
+prog_bin="/usr/local/bin/$prog"
+etcd_conf_file="/etc/etcd/etcd.conf"
+etcd_log_file="{{etcd_log_file}}"
+
+if ! [ -f $prog_bin ]; then
+  echo "$prog not found."
+  exit 5
+fi
+
+if ! [ -f $etcd_conf_file ]; then
+  echo "$etcd_conf_file not found."
+  exit 5
+fi
+
+start() {
+  echo "Starting $prog: "
+  su $etcd_user -c "nohup $prog_bin --config-file $etcd_conf_file >> $etcd_log_file 2>&1 &"
+  RETVAL=$?
+  return $RETVAL
+}
+
+stop() {
+  echo "Shutting down $prog: "
+  pkill -f $prog_bin
+}
+
+restart() {
+    stop
+    start
+}
+
+status() {
+  if [ -z $pid ]; then
+     pid=$(pgrep -f $prog_bin)
+  fi
+
+  if [ -z $pid ]; then
+    echo "$prog is not running."
+    return 1
+  else
+    echo "$prog is running (pid is $pid)."
+  fi
+
+}
+
+case "$1" in
+  start)   start;;
+  stop)    stop;;
+  restart) restart;;
+  status)  status;;
+  *)       echo "Usage: $0 {start|stop|restart|status}"
+           RETVAL=2;;
+esac
+exit $RETVAL

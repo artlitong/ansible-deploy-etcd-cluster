@@ -1,0 +1,26 @@
+---
+- name: install etcd service 
+  become: yes
+  become_user: root
+  register: etcd_service_modified
+  with_items:
+    - f: etcd
+      d: /etc/init.d
+  template:
+    src: '{{item.f}}.j2'
+    dest: '{{item.d}}/{{item.f}}'
+    mode: 0755
+
+- name: launching etcd...
+  become: yes
+  become_user: root
+  service:
+    name: etcd
+    enabled: yes
+    state: started
+
+#- name: etcd restart
+#  become: yes
+#  become_user: root
+#  when: etcd_service_modified|changed
+#  command: service etcd restart

@@ -1,0 +1,66 @@
+---
+- name: create etcd group
+  become: yes
+  become_user: root
+  group:
+    name: '{{etcd_group}}'
+    state: present
+  
+- name: create etcd user
+  become: yes
+  become_user: root
+  user:
+    name: '{{etcd_user}}'
+    group: '{{etcd_group}}'
+    state: present
+
+- name: create etcd data dirs
+  become: yes
+  become_user: root
+  file:
+    state: directory
+    path: '{{item}}'
+    owner: '{{etcd_user}}'
+    group: '{{etcd_group}}'
+    mode: 0755
+  with_items:
+    - '{{etcd_data_dir}}'
+
+- name: create conf dirs
+  become: yes
+  become_user: root
+  file:
+    state: directory
+    path: '{{item}}'
+    owner: '{{etcd_user}}'
+    group: '{{etcd_group}}'
+    mode: 0755
+  with_items:
+    - '{{etcd_conf_dir}}'
+
+- name: create log file
+  become: yes
+  become_user: root
+  file:
+    state: touch
+    path: '{{item}}'
+    owner: '{{etcd_user}}'
+    group: '{{etcd_group}}'
+    mode: 0755
+  with_items:
+    - '{{ etcd_log_file }}'
+    
+- name: install configuration
+  become: yes
+  become_user: root
+  with_items:
+    - f: etcd.conf
+      d: /etc/etcd
+  template:
+    src: '{{item.f}}.j2'
+    dest: '{{item.d}}/{{item.f}}'
+    owner: '{{etcd_user}}'
+    group: '{{etcd_group}}'
+    mode: 0644
+
+- include: 'run.yml'

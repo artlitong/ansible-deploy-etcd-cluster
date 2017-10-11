@@ -1,0 +1,3 @@
+---
+etcd_public_address : "{{inventory_hostname}}"
+etcd_cluster: "{% for host in groups[etcd_master_group_name] %}{{hostvars[host]['name']}}={{etcd_scheme}}://{{host}}:2380{% if not loop.last %},{% endif %}{% endfor %}"

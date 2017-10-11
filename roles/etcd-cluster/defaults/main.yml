@@ -1,0 +1,9 @@
+---
+etcd_user: etcd
+etcd_group: etcd
+etcd_data_dir: '/vpants/etcd/data'
+etcd_conf_dir: '/etc/etcd'
+etcd_log_file: '/var/log/etcd.log'
+etcd_master_group_name: etcd-master
+etcd_initial_cluster_token: etcd-cluster-1
+etcd_scheme: http
